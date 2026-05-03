@@ -1,7 +1,6 @@
-baseURL = "https://bricesIOU.github.io/"
-languageCode = "fr-fr"
+baseURL = "https://bricesiou.github.io/"
+locale = "fr-FR"
 title = "SIOU Eninam Brice"
-theme = ""
 
 [params]
   name = "SIOU Eninam Brice"
