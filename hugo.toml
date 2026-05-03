@@ -1,0 +1,24 @@
+baseURL = "https://bricesIOU.github.io/"
+languageCode = "fr-fr"
+title = "SIOU Eninam Brice"
+theme = ""
+
+[params]
+  name = "SIOU Eninam Brice"
+  tagline = "Élève-ingénieur passionné par la cybersécurité, le développement et les infrastructures numériques. Orienté vers la résolution de problèmes techniques complexes, je me consacre à la sécurisation des données et à l'innovation technologique pour bâtir des systèmes plus résilients."
+  github = "https://github.com/BriceSIOU"
+  linkedin = "https://www.linkedin.com/in/brice-siou/"
+
+[menu]
+  [[menu.main]]
+    name = "~/about"
+    url = "/#about"
+    weight = 1
+  [[menu.main]]
+    name = "~/projects"
+    url = "/#projects"
+    weight = 2
+  [[menu.main]]
+    name = "~/contact"
+    url = "/#contact"
+    weight = 3

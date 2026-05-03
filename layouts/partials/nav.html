@@ -1,0 +1,10 @@
+<nav class="nav">
+  <a href="/" class="nav__logo">
+    <span class="green">~</span>/brice
+  </a>
+  <ul class="nav__links">
+    {{ range .Site.Menus.main }}
+    <li><a href="{{ .URL }}" class="nav__link">{{ .Name }}</a></li>
+    {{ end }}
+  </ul>
+</nav>
