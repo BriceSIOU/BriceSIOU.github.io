@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projets on Eninam Brice SIOU | Portfolio</title>
+    <link>http://localhost:1313/en/projets/</link>
+    <description>Recent content in Projets on Eninam Brice SIOU | Portfolio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>eninambrices@gmail.com (Eninam Brice SIOU)</managingEditor>
+    <webMaster>eninambrices@gmail.com (Eninam Brice SIOU)</webMaster>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/projets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>High-Performance Web Crawler</title>
+      <link>http://localhost:1313/en/projets/webcrawler/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate><author>eninambrices@gmail.com (Eninam Brice SIOU)</author>
+      <guid>http://localhost:1313/en/projets/webcrawler/</guid>
+      <description>Development of a high-performance Web Crawler in Node.js and doing some test. Web Crawler</description>
+    </item>
+  </channel>
+</rss>

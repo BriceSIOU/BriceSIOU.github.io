@@ -1,0 +1,83 @@
+baseURL = 'https://bricesiou.github.io/'
+theme = 'terminal'
+defaultContentLanguage = 'fr'
+
+[params]
+  themeColor = 'green'
+  fullWidthTheme = false
+  centerTheme = true
+  showLanguageSelector = true
+
+[[params.social]]
+  name = "github"
+  url = "https://github.com/BriceSIOU"
+
+[[params.social]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/brice-siou/"
+
+# --- FRANÇAIS ---
+[languages]
+  [languages.fr]
+    languageName = "Français"
+    languageCode = "fr-fr"
+    title = "Eninam Brice SIOU | Portfolio"
+    weight = 1
+    
+    [languages.fr.params.logo]
+      logoText = "brice@portfolio:~$"
+      subtitle = "Ingénierie en cybersécurité | Spécialisation Hardware"
+      [languages.fr.params.author]
+        name = "Eninam Brice SIOU"
+        email = "eninambrices@gmail.com"
+
+    [[languages.fr.menu.main]]
+      name = "À propos"
+      url = "/about/"
+      weight = 1
+    [[languages.fr.menu.main]]
+      name = "Projets"
+      url = "/projets/"
+      weight = 2
+    [[languages.fr.menu.main]]
+      name = "Livres"
+      url = "/livres/"
+      weight = 3
+    [[languages.fr.menu.main]]
+      name = "Articles"
+      url = "/articles/"
+      weight = 4
+
+# --- ENGLISH ---
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-us"
+    title = "Eninam Brice SIOU | Portfolio"
+    weight = 2
+    
+    [languages.en.params.logo]
+      logoText = "brice@portfolio:~$"
+      subtitle = "Cybersecurity Engineering | Hardware security Specialization"
+      [languages.en.params.author]
+        name = "Eninam Brice SIOU"
+        email = "eninambrices@gmail.com"
+
+    [[languages.en.menu.main]]
+      name = "About"
+      url = "/en/about/"
+      weight = 1
+
+    [[languages.en.menu.main]]
+      name = "Projects"
+      url = "/en/projets/"
+      weight = 2
+
+    [[languages.en.menu.main]]
+      name = "Books"
+      url = "/en/livres/"
+      weight = 3
+
+    [[languages.en.menu.main]]
+      name = "Articles"
+      url = "/en/articles/"
+      weight = 4
