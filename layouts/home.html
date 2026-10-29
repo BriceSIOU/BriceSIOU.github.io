@@ -1,0 +1,84 @@
+{{ define "main" }}
+{{ $projects := where (where .Site.RegularPages "Section" "projets") "Params.featured" true }}
+{{ $posts := first 3 (where .Site.RegularPages "Section" "articles") }}
+
+<section class="hero">
+  <div class="hero__prompt" aria-hidden="true">
+    <span class="prompt-line">┌──[<span class="green">brice</span>@<span class="faint">portfolio</span>]─[<span class="green">~</span>]</span>
+    <span class="prompt-line">└──╼ $ <span class="typing" id="typed" data-phrases="{{ .Params.typed | jsonify }}"></span><span class="cursor">▋</span></span>
+  </div>
+
+  <p class="hero__status"><span class="dot" aria-hidden="true"></span>{{ i18n "available" }}</p>
+
+  <h1 class="hero__name">{{ .Site.Params.name }}</h1>
+  <p class="hero__subtitle">{{ .Site.Params.subtitle }}</p>
+  <p class="hero__tagline">{{ i18n "hero_tagline" }}</p>
+
+  {{ with .Params.tags_hero }}
+  <ul class="hero__tags">
+    {{ range . }}<li class="tag">{{ . }}</li>{{ end }}
+  </ul>
+  {{ end }}
+
+  <div class="hero__actions">
+    {{ with .Site.GetPage "/projets" }}
+      <a href="{{ .RelPermalink }}" class="btn btn--primary">{{ i18n "hero_cta_work" }} <span aria-hidden="true">→</span></a>
+    {{ end }}
+    {{ with .Site.GetPage "/cv" }}
+      <a href="{{ .RelPermalink }}" class="btn">{{ partial "icon.html" "download" }} {{ i18n "hero_cta_cv" }}</a>
+    {{ end }}
+    <a href="{{ .Site.Params.github }}" class="btn" rel="noopener" target="_blank">{{ partial "icon.html" "github" }} GitHub</a>
+    <a href="{{ .Site.Params.linkedin }}" class="btn" rel="noopener" target="_blank">{{ partial "icon.html" "linkedin" }} LinkedIn</a>
+  </div>
+</section>
+
+{{ with .Params.facts }}
+<section class="section section--tight">
+  {{ partial "section-header.html" (dict "title" (i18n "quick_facts")) }}
+  <dl class="facts reveal">
+    {{ range . }}
+      <div class="facts__row">
+        <dt class="facts__key">{{ .label }}</dt>
+        <dd class="facts__val">{{ .value }}</dd>
+      </div>
+    {{ end }}
+  </dl>
+</section>
+{{ end }}
+
+{{ with $projects }}
+<section class="section">
+  {{ $all := $.Site.GetPage "/projets" }}
+  {{ partial "section-header.html" (dict "title" (i18n "featured_work") "href" $all.RelPermalink "label" (i18n "view_all")) }}
+  <div class="grid grid--feature">
+    {{ range sort . "Params.weight" }}
+      {{ partial "project-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with $posts }}
+<section class="section">
+  {{ $all := $.Site.GetPage "/articles" }}
+  {{ partial "section-header.html" (dict "title" (i18n "latest_writing") "href" $all.RelPermalink "label" (i18n "view_all")) }}
+  <ul class="postlist reveal">
+    {{ range . }}
+      <li class="postlist__item">
+        <a href="{{ .RelPermalink }}" class="postlist__link">
+          <time class="postlist__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          <span class="postlist__title">{{ .Title }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+<section class="section section--cta">
+  <div class="cta reveal">
+    <p class="cta__text">{{ i18n "contact_intro" }}</p>
+    <a href="mailto:{{ .Site.Params.email }}" class="btn btn--primary">{{ partial "icon.html" "mail" }} {{ .Site.Params.email }}</a>
+  </div>
+</section>
+{{ end }}

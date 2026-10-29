@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  <header class="pagehead">
+    <p class="pagehead__prompt" aria-hidden="true">
+      <span class="faint">└──╼ $</span> <span class="green">cat {{ path.Base .RelPermalink }}.md</span>
+    </p>
+    <h1 class="pagehead__title">{{ .Title }}</h1>
+    <p class="pagehead__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ i18n "published_on" }} {{ .Date.Format "02/01/2006" }}</time>
+      <span class="faint">·</span> {{ .ReadingTime }} {{ i18n "reading_time" }}
+    </p>
+  </header>
+  <article class="prose">{{ .Content }}</article>
+  {{ partial "page-foot.html" . }}
+</div>
+{{ end }}

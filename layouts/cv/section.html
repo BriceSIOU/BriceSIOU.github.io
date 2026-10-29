@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  {{ partial "page-hero.html" . }}
+
+  <div class="cvbox reveal">
+    <a href="{{ .Site.Params.cv | relURL }}" class="btn btn--primary btn--lg" download>
+      {{ partial "icon.html" "download" }} {{ i18n "download_cv" }}
+    </a>
+    {{ with .Params.updated }}
+      {{ $u := time.AsTime . }}
+      <p class="cvbox__meta">{{ i18n "cv_updated" }} : <time datetime="{{ $u.Format "2006-01-02" }}">{{ $u.Format "02/01/2006" }}</time></p>
+    {{ end }}
+  </div>
+
+  <article class="prose">{{ .Content }}</article>
+
+  {{/* Reuse the structured data from the About page so the CV summary
+       never drifts out of sync with it. */}}
+  {{ with .Site.GetPage "/about" }}
+    {{ with .Params.experience }}
+    <section class="block">
+      {{ partial "section-header.html" (dict "title" (i18n "experience")) }}
+      <ol class="timeline">
+        {{ range . }}
+        <li class="timeline__item reveal">
+          <div class="timeline__meta"><span class="timeline__period">{{ .period }}</span></div>
+          <div class="timeline__body">
+            <h3 class="timeline__role">{{ .role }} <span class="faint">·</span> <span class="green">{{ .org }}</span></h3>
+            {{ with .stack }}<ul class="chips">{{ range . }}<li class="chip">{{ . }}</li>{{ end }}</ul>{{ end }}
+          </div>
+        </li>
+        {{ end }}
+      </ol>
+    </section>
+    {{ end }}
+    {{ with .Params.education }}
+    <section class="block">
+      {{ partial "section-header.html" (dict "title" (i18n "education")) }}
+      <ol class="timeline">
+        {{ range . }}
+        <li class="timeline__item reveal">
+          <div class="timeline__meta"><span class="timeline__period">{{ .period }}</span></div>
+          <div class="timeline__body">
+            <h3 class="timeline__role">{{ .degree }}</h3>
+            <p class="timeline__project">{{ .school }}</p>
+          </div>
+        </li>
+        {{ end }}
+      </ol>
+    </section>
+    {{ end }}
+    <p class="morelink"><a href="{{ .RelPermalink }}" class="backlink">{{ i18n "view_all" }} — {{ .Title | lower }} <span aria-hidden="true">→</span></a></p>
+  {{ end }}
+</div>
+{{ end }}

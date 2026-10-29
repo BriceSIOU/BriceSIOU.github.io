@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="wrap">
+  {{ partial "page-hero.html" . }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ $books := .Pages.ByDate.Reverse }}
+  {{ if $books }}
+  <div class="grid">
+    {{ range $books }}
+    <article class="card card--book reveal">
+      <h3 class="card__title"><a href="{{ .RelPermalink }}" class="card__link">{{ .Title }}</a></h3>
+      {{ with .Params.author }}<p class="card__kind">{{ i18n "by_author" }} {{ . }}</p>{{ end }}
+      <p class="card__desc">{{ .Params.summary | default .Summary }}</p>
+      <div class="card__actions">
+        {{ with .Params.status }}<span class="chip chip--green">{{ i18n . }}</span>{{ end }}
+        {{ with .Params.rating }}
+        <span class="rating" aria-label="{{ i18n "rating" }}: {{ . }}/5">
+          {{ range seq 5 }}<span class="{{ if le . $.Params.rating }}on{{ end }}" aria-hidden="true">●</span>{{ end }}
+        </span>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty">{{ i18n "no_books" }}</p>
+  {{ end }}
+</div>
+{{ end }}

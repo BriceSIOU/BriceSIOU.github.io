@@ -1,0 +1,26 @@
+{{- $p := . -}}
+<article class="card reveal">
+  <div class="card__top">
+    <span class="card__icon" aria-hidden="true">{{ .Params.icon | default "▸" }}</span>
+    <span class="card__year">{{ .Params.year }}</span>
+  </div>
+  <h3 class="card__title">
+    <a href="{{ .RelPermalink }}" class="card__link">{{ .Title }}</a>
+  </h3>
+  {{ with .Params.ptype }}<p class="card__kind">{{ . }}</p>{{ end }}
+  <p class="card__desc">{{ .Params.summary | default .Summary }}</p>
+  {{ with .Params.tech }}
+  <ul class="card__tech">
+    {{ range first 5 . }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  {{ end }}
+  <div class="card__actions">
+    <span class="card__cta">{{ i18n "read_more" }} <span aria-hidden="true">→</span></span>
+    {{ with .Params.repo }}
+      <a href="{{ . }}" class="card__repo" rel="noopener" target="_blank"
+         onclick="event.stopPropagation()" aria-label="{{ i18n "view_code" }} — {{ $p.Title }}">
+        {{ partial "icon.html" "github" }}
+      </a>
+    {{ end }}
+  </div>
+</article>

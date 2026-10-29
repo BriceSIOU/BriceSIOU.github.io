@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  {{ partial "page-hero.html" . }}
+  <article class="prose">{{ .Content }}</article>
+  {{ partial "page-foot.html" . }}
+</div>
+{{ end }}

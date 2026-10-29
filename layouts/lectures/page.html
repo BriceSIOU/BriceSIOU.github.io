@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  <header class="pagehead">
+    <p class="pagehead__prompt" aria-hidden="true">
+      <span class="faint">└──╼ $</span> <span class="green">cat {{ path.Base .RelPermalink }}.md</span>
+    </p>
+    <h1 class="pagehead__title">{{ .Title }}</h1>
+    {{ with .Params.author }}<p class="pagehead__lead">{{ i18n "by_author" }} <span class="green">{{ . }}</span></p>{{ end }}
+    <p class="pagehead__meta">
+      {{ with .Params.status }}<span class="chip chip--green">{{ i18n . }}</span>{{ end }}
+      {{ with .Params.rating }}
+      <span class="rating" aria-label="{{ i18n "rating" }}: {{ . }}/5">
+        {{ range seq 5 }}<span class="{{ if le . $.Params.rating }}on{{ end }}" aria-hidden="true">●</span>{{ end }}
+      </span>
+      {{ end }}
+    </p>
+  </header>
+
+  {{ with .Params.takeaways }}
+  <section class="takeaways reveal">
+    <h2 class="takeaways__title">{{ i18n "takeaways" }}</h2>
+    <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+  </section>
+  {{ end }}
+
+  <article class="prose">{{ .Content }}</article>
+  {{ partial "page-foot.html" . }}
+</div>
+{{ end }}

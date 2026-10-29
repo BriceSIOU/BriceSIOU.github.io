@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="wrap">
+  {{ partial "page-hero.html" . }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ with .Pages }}
+  <ul class="postlist">
+    {{ range . }}
+      <li class="postlist__item">
+        <a href="{{ .RelPermalink }}" class="postlist__link">
+          <time class="postlist__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          <span class="postlist__title">{{ .Title }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>
+{{ end }}

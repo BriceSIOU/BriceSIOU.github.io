@@ -1,0 +1,7 @@
+{{- /* ctx: dict "title" <string> "href" <string optional> "label" <string optional> */ -}}
+<div class="section__header">
+  <span class="section__prefix green" aria-hidden="true">//</span>
+  <h2 class="section__title">{{ .title }}</h2>
+  <span class="section__line" aria-hidden="true"></span>
+  {{ with .href }}<a href="{{ . }}" class="section__more">{{ $.label }} <span aria-hidden="true">→</span></a>{{ end }}
+</div>

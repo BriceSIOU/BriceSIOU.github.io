@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.LanguageCode | default .Site.Language.Lang }}" dir="ltr" class="no-js">
+<head>
+  <script>document.documentElement.classList.remove('no-js');</script>
+  {{ partial "head.html" . }}
+</head>
+<body class="{{ if .IsHome }}is-home{{ end }}">
+  <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+  {{ if .Site.Params.grain }}<canvas id="grain" aria-hidden="true"></canvas>{{ end }}
+  {{ partial "nav.html" . }}
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script src="{{ "js/main.js" | relURL }}" defer></script>
+  {{ if .Site.Params.grain }}<script src="{{ "js/grain.js" | relURL }}" defer></script>{{ end }}
+</body>
+</html>

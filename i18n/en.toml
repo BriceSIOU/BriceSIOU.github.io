@@ -1,0 +1,87 @@
+# ── Navigation / global ──
+skip_to_content = "Skip to content"
+menu            = "Menu"
+close           = "Close"
+switch_language = "Switch to French"
+back_to         = "Back to"
+home            = "Home"
+built_with      = "built with Hugo & GitHub Pages"
+source_code     = "Source code of this site"
+all_rights      = "All rights reserved"
+
+# ── Home ──
+hero_tagline    = "I design, break and harden systems — from lightweight embedded cryptography to DevSecOps pipelines."
+hero_cta_work   = "See the projects"
+hero_cta_cv     = "Download CV"
+available       = "Available for an internship"
+featured_work   = "featured work"
+latest_writing  = "latest writing"
+view_all        = "view all"
+quick_facts     = "at a glance"
+
+# ── Sections ──
+about           = "about"
+projects        = "projects"
+writing         = "writing"
+reading         = "reading"
+cv              = "cv"
+contact         = "contact"
+
+# ── About ──
+education       = "education"
+experience      = "experience"
+skills          = "skills"
+certifications  = "certifications"
+languages_spoken = "languages"
+leadership      = "leadership"
+present         = "present"
+toolbox         = "daily driver"
+
+# ── Projects ──
+all_projects      = "all projects"
+project_meta      = "details"
+stack             = "stack"
+role              = "type"
+year              = "year"
+view_code         = "view the code"
+view_project      = "view project"
+read_more         = "read more"
+no_projects       = "No projects yet."
+filter_all        = "all"
+filter_by_tag     = "Filter by tag"
+
+# ── Writing ──
+no_posts          = "No posts yet — coming soon."
+reading_time      = "min read"
+published_on      = "Published on"
+updated_on        = "Updated on"
+tags              = "tags"
+table_of_contents = "contents"
+rss_feed          = "RSS feed"
+
+# ── Reading ──
+no_books          = "No reading notes yet."
+by_author         = "by"
+rating            = "rating"
+takeaways         = "takeaways"
+finished          = "finished"
+currently_reading = "reading"
+want_to_read      = "to read"
+status            = "status"
+
+# ── CV ──
+download_cv       = "Download CV (PDF)"
+cv_intro          = "Full, up-to-date version as a PDF, or the summary below."
+cv_updated        = "Last updated"
+
+# ── Contact ──
+contact_intro     = "Open to internships, collaborations and open-source projects. Email is the easiest way to reach me."
+copy_email        = "Copy address"
+copied            = "Copied!"
+send_email        = "Send an email"
+
+# ── 404 ──
+notfound_title    = "404 — page not found"
+notfound_cmd      = "command not found"
+notfound_text     = "This page does not exist or has been moved."
+notfound_back     = "Back to home"

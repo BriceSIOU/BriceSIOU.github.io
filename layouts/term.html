@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  <header class="pagehead">
+    <p class="pagehead__prompt" aria-hidden="true"><span class="faint">└──╼ $</span> <span class="green">grep -r "#{{ .Title }}" .</span></p>
+    <h1 class="pagehead__title">#{{ .Title }}</h1>
+  </header>
+  <ul class="postlist">
+    {{ range .Pages }}
+      <li class="postlist__item">
+        <a href="{{ .RelPermalink }}" class="postlist__link">
+          <time class="postlist__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          <span class="postlist__title">{{ .Title }}</span>
+          <span class="postlist__sec faint">{{ .Section }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

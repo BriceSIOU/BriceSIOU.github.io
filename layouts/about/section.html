@@ -1,0 +1,109 @@
+{{ define "main" }}
+<div class="wrap">
+  {{ partial "page-hero.html" . }}
+  {{ with .Params.lead }}{{ end }}
+
+  {{ with .Params.experience }}
+  <section class="block">
+    {{ partial "section-header.html" (dict "title" (i18n "experience")) }}
+    <ol class="timeline">
+      {{ range . }}
+      <li class="timeline__item reveal">
+        <div class="timeline__meta">
+          <span class="timeline__period">{{ .period }}</span>
+          {{ with .location }}<span class="timeline__place">{{ . }}</span>{{ end }}
+        </div>
+        <div class="timeline__body">
+          <h3 class="timeline__role">{{ .role }} <span class="faint">·</span> <span class="green">{{ .org }}</span></h3>
+          {{ with .project }}<p class="timeline__project">{{ . }}</p>{{ end }}
+          {{ with .points }}
+          <ul class="timeline__points">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
+          {{ with .stack }}
+          <ul class="chips">
+            {{ range . }}<li class="chip">{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+
+  {{ with .Params.education }}
+  <section class="block">
+    {{ partial "section-header.html" (dict "title" (i18n "education")) }}
+    <ol class="timeline">
+      {{ range . }}
+      <li class="timeline__item reveal">
+        <div class="timeline__meta">
+          <span class="timeline__period">{{ .period }}</span>
+          {{ with .location }}<span class="timeline__place">{{ . }}</span>{{ end }}
+        </div>
+        <div class="timeline__body">
+          <h3 class="timeline__role">{{ .degree }}</h3>
+          <p class="timeline__project">{{ .school }}</p>
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+
+  {{ with .Params.skills }}
+  <section class="block">
+    {{ partial "section-header.html" (dict "title" (i18n "skills")) }}
+    <div class="skills">
+      {{ range . }}
+      <div class="skills__group reveal">
+        <h3 class="skills__name"><span class="green" aria-hidden="true">▸</span> {{ .group }}</h3>
+        <ul class="chips">
+          {{ range .items }}<li class="chip">{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Content }}
+  <section class="block">
+    <div class="prose">{{ . }}</div>
+  </section>
+  {{ end }}
+
+  <section class="block">
+    <div class="cols">
+      {{ with .Params.toolbox }}
+      <div class="col reveal">
+        <h3 class="col__title">{{ i18n "toolbox" }}</h3>
+        <ul class="chips">{{ range . }}<li class="chip chip--green">{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{ end }}
+      {{ with .Params.certifications }}
+      <div class="col reveal">
+        <h3 class="col__title">{{ i18n "certifications" }}</h3>
+        <ul class="plainlist">{{ range . }}<li><span class="green" aria-hidden="true">✓</span> {{ .name }}</li>{{ end }}</ul>
+      </div>
+      {{ end }}
+      {{ with .Params.spoken }}
+      <div class="col reveal">
+        <h3 class="col__title">{{ i18n "languages_spoken" }}</h3>
+        <ul class="plainlist">{{ range . }}<li><strong>{{ .name }}</strong> <span class="faint">— {{ .level }}</span></li>{{ end }}</ul>
+      </div>
+      {{ end }}
+      {{ with .Params.leadership }}
+      <div class="col reveal">
+        <h3 class="col__title">{{ i18n "leadership" }}</h3>
+        <ul class="plainlist">
+          {{ range . }}<li><strong>{{ .role }}</strong> — {{ .org }} <span class="faint">({{ .period }})</span>{{ with .note }}<br><span class="faint">{{ . }}</span>{{ end }}</li>{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}

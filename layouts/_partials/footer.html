@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__text">
+      © {{ now.Year }} {{ .Site.Params.name }} — {{ i18n "built_with" }}
+    </p>
+    <ul class="footer__links">
+      <li><a href="{{ .Site.Params.github }}" rel="me noopener" target="_blank">GitHub</a></li>
+      <li><a href="{{ .Site.Params.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:{{ .Site.Params.email }}">Email</a></li>
+      {{ with .Site.GetPage "/articles" }}
+        {{ with .OutputFormats.Get "rss" }}
+          <li><a href="{{ .RelPermalink }}">RSS</a></li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</footer>

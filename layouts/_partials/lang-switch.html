@@ -1,0 +1,31 @@
+{{- /* Links to the same page in the other language, falling back to that
+       language's home page when no translation exists. */ -}}
+{{ $others := .Translations }}
+{{ if $others }}
+<ul class="lang" aria-label="{{ i18n "switch_language" }}">
+  {{ range $others }}
+    {{ $target := .RelPermalink }}
+    <li>
+      <a href="{{ $target }}" class="lang__link" hreflang="{{ .Site.Language.Lang }}"
+         lang="{{ .Site.Language.Lang }}" title="{{ i18n "switch_language" }}">
+        {{ .Site.Language.Lang | upper }}
+      </a>
+    </li>
+  {{ end }}
+</ul>
+{{ else }}
+  {{/* No translation of this exact page — fall back to the other language's home */}}
+  {{ $cur := .Site.Language.Lang }}
+  <ul class="lang" aria-label="{{ i18n "switch_language" }}">
+    {{ range .Sites }}
+      {{ if ne .Language.Lang $cur }}
+      <li>
+        <a href="{{ .Home.RelPermalink }}" class="lang__link" hreflang="{{ .Language.Lang }}"
+           lang="{{ .Language.Lang }}" title="{{ i18n "switch_language" }}">
+          {{ .Language.Lang | upper }}
+        </a>
+      </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+{{ end }}

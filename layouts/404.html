@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow notfound">
+  <p class="notfound__prompt" aria-hidden="true">
+    <span class="faint">┌──[</span><span class="green">brice</span><span class="faint">@portfolio]─[</span><span class="red">~/???</span><span class="faint">]</span><br>
+    <span class="faint">└──╼ $</span> <span class="green">cd .{{ "" }}</span><br>
+    <span class="red">bash: cd: {{ i18n "notfound_cmd" }}</span>
+  </p>
+  <h1 class="pagehead__title">{{ i18n "notfound_title" }}</h1>
+  <p class="pagehead__lead">{{ i18n "notfound_text" }}</p>
+  <p><a href="{{ .Site.Home.RelPermalink }}" class="btn btn--primary"><span aria-hidden="true">←</span> {{ i18n "notfound_back" }}</a></p>
+</div>
+{{ end }}

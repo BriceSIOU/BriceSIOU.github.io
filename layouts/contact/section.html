@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  {{ partial "page-hero.html" . }}
+  <article class="prose">{{ .Content }}</article>
+
+  <ul class="contact reveal">
+    <li class="contact__item">
+      <span class="contact__key">{{ partial "icon.html" "mail" }} email</span>
+      <a href="mailto:{{ .Site.Params.email }}" class="contact__val">{{ .Site.Params.email }}</a>
+      <button class="copybtn" data-copy="{{ .Site.Params.email }}" data-done="{{ i18n "copied" }}" aria-label="{{ i18n "copy_email" }}">
+        {{ partial "icon.html" "copy" }}<span class="copybtn__label">{{ i18n "copy_email" }}</span>
+      </button>
+    </li>
+    <li class="contact__item">
+      <span class="contact__key">{{ partial "icon.html" "linkedin" }} linkedin</span>
+      <a href="{{ .Site.Params.linkedin }}" class="contact__val" rel="noopener" target="_blank">{{ .Site.Params.linkedinUser }} {{ partial "icon.html" "external" }}</a>
+    </li>
+    <li class="contact__item">
+      <span class="contact__key">{{ partial "icon.html" "github" }} github</span>
+      <a href="{{ .Site.Params.github }}" class="contact__val" rel="noopener" target="_blank">{{ .Site.Params.githubUser }} {{ partial "icon.html" "external" }}</a>
+    </li>
+    <li class="contact__item">
+      <span class="contact__key">◈ {{ lower (i18n "home") }}</span>
+      <span class="contact__val">{{ .Site.Params.location }}</span>
+    </li>
+  </ul>
+</div>
+{{ end }}

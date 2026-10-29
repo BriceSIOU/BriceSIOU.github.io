@@ -1,0 +1,17 @@
+<footer class="pagefoot">
+  {{ with .Params.tags }}
+  <ul class="tags">
+    {{ range $tag := . }}
+      {{ $tp := $.Site.GetPage (printf "/tags/%s" (urlize $tag)) }}
+      {{ if $tp }}
+        <li><a href="{{ $tp.RelPermalink }}" class="tag tag--link">#{{ $tag }}</a></li>
+      {{ else }}
+        <li><span class="tag">#{{ $tag }}</span></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+  {{ end }}
+  {{ with .Parent }}
+    <a href="{{ .RelPermalink }}" class="backlink"><span aria-hidden="true">←</span> {{ i18n "back_to" }} {{ lower .Title }}</a>
+  {{ end }}
+</footer>

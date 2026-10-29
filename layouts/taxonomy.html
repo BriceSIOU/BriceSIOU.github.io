@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  <header class="pagehead">
+    <p class="pagehead__prompt" aria-hidden="true"><span class="faint">└──╼ $</span> <span class="green">ls ./tags</span></p>
+    <h1 class="pagehead__title">{{ i18n "tags" }}</h1>
+  </header>
+  <ul class="tags tags--lg">
+    {{ range .Pages }}
+      <li><a href="{{ .RelPermalink }}" class="tag tag--link">#{{ .Title }} <span class="faint">{{ len .Pages }}</span></a></li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

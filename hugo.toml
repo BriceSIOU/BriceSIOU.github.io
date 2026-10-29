@@ -1,83 +1,140 @@
 baseURL = 'https://bricesiou.github.io/'
-theme = 'terminal'
 defaultContentLanguage = 'fr'
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+enableEmoji = true
+enableGitInfo = false
+timeZone = 'Africa/Casablanca'
+summaryLength = 30
+
+[pagination]
+  pagerSize = 8
+
+[taxonomies]
+  tag = 'tags'
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+    style = 'dracula'
+    lineNos = false
+    tabWidth = 2
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
 
 [params]
-  themeColor = 'green'
-  fullWidthTheme = false
-  centerTheme = true
-  showLanguageSelector = true
+  name = 'Eninam Brice SIOU'
+  email = 'eninambrices@gmail.com'
+  phone = '+212 625627115'
+  github = 'https://github.com/BriceSIOU'
+  githubUser = 'BriceSIOU'
+  linkedin = 'https://www.linkedin.com/in/brice-siou/'
+  linkedinUser = 'brice-siou'
+  themeColor = '#39ff14'
+  # Set to false to disable the animated film-grain overlay site-wide
+  grain = true
 
-[[params.social]]
-  name = "github"
-  url = "https://github.com/BriceSIOU"
-
-[[params.social]]
-  name = "linkedin"
-  url = "https://www.linkedin.com/in/brice-siou/"
-
-# --- FRANÇAIS ---
+# ─────────────────────────── FRANÇAIS ───────────────────────────
 [languages]
   [languages.fr]
-    languageName = "Français"
-    languageCode = "fr-fr"
-    title = "Eninam Brice SIOU | Portfolio"
+    languageName = 'Français'
+    languageCode = 'fr-FR'
+    contentDir = 'content/fr'
+    title = 'Eninam Brice SIOU'
     weight = 1
-    
-    [languages.fr.params.logo]
-      logoText = "brice@portfolio:~$"
-      subtitle = "Ingénierie en cybersécurité | Spécialisation Hardware"
-      [languages.fr.params.author]
-        name = "Eninam Brice SIOU"
-        email = "eninambrices@gmail.com"
+
+    [languages.fr.params]
+      locale = 'fr_FR'
+      subtitle = "Étudiant ingénieur en cybersécurité & cyberintelligence"
+      description = "Portfolio d'Eninam Brice SIOU — étudiant ingénieur en cybersécurité et cyberintelligence à l'ENSA Tanger. Cryptographie légère, DevSecOps, sécurité IoT."
+      location = 'Tanger, Maroc'
+      cv = '/cv/CV_SIOU_ENINAM_BRICE.pdf'
 
     [[languages.fr.menu.main]]
-      name = "À propos"
-      url = "/about/"
+      name = '~/about'
+      pageRef = '/about'
       weight = 1
     [[languages.fr.menu.main]]
-      name = "Projets"
-      url = "/projets/"
+      name = '~/projets'
+      pageRef = '/projets'
       weight = 2
     [[languages.fr.menu.main]]
-      name = "Livres"
-      url = "/livres/"
+      name = '~/articles'
+      pageRef = '/articles'
       weight = 3
     [[languages.fr.menu.main]]
-      name = "Articles"
-      url = "/articles/"
+      name = '~/lectures'
+      pageRef = '/lectures'
       weight = 4
+    [[languages.fr.menu.main]]
+      name = '~/cv'
+      pageRef = '/cv'
+      weight = 5
+    [[languages.fr.menu.main]]
+      name = '~/contact'
+      pageRef = '/contact'
+      weight = 6
 
-# --- ENGLISH ---
+# ─────────────────────────── ENGLISH ────────────────────────────
   [languages.en]
-    languageName = "English"
-    languageCode = "en-us"
-    title = "Eninam Brice SIOU | Portfolio"
+    languageName = 'English'
+    languageCode = 'en-US'
+    contentDir = 'content/en'
+    title = 'Eninam Brice SIOU'
     weight = 2
-    
-    [languages.en.params.logo]
-      logoText = "brice@portfolio:~$"
-      subtitle = "Cybersecurity Engineering | Hardware security Specialization"
-      [languages.en.params.author]
-        name = "Eninam Brice SIOU"
-        email = "eninambrices@gmail.com"
+
+    [languages.en.params]
+      locale = 'en_US'
+      subtitle = 'Cybersecurity & cyberintelligence engineering student'
+      description = 'Portfolio of Eninam Brice SIOU — cybersecurity and cyberintelligence engineering student at ENSA Tangier. Lightweight cryptography, DevSecOps, IoT security.'
+      location = 'Tangier, Morocco'
+      cv = '/cv/CV_SIOU_ENINAM_BRICE.pdf'
 
     [[languages.en.menu.main]]
-      name = "About"
-      url = "/en/about/"
+      name = '~/about'
+      pageRef = '/about'
       weight = 1
-
     [[languages.en.menu.main]]
-      name = "Projects"
-      url = "/en/projets/"
+      name = '~/projects'
+      pageRef = '/projets'
       weight = 2
-
     [[languages.en.menu.main]]
-      name = "Books"
-      url = "/en/livres/"
+      name = '~/writing'
+      pageRef = '/articles'
       weight = 3
-
     [[languages.en.menu.main]]
-      name = "Articles"
-      url = "/en/articles/"
+      name = '~/reading'
+      pageRef = '/lectures'
       weight = 4
+    [[languages.en.menu.main]]
+      name = '~/cv'
+      pageRef = '/cv'
+      weight = 5
+    [[languages.en.menu.main]]
+      name = '~/contact'
+      pageRef = '/contact'
+      weight = 6
+
+# ──────────────── URLs traduites / translated URLs ────────────────
+# Les dossiers de contenu portent des noms français ; ces règles
+# donnent à chaque langue des URLs naturelles.
+[languages.fr.permalinks.section]
+  about = '/a-propos/'
+[languages.fr.permalinks.page]
+  about = '/a-propos/:slug/'
+
+[languages.en.permalinks.section]
+  projets  = '/projects/'
+  articles = '/writing/'
+  lectures = '/reading/'
+[languages.en.permalinks.page]
+  projets  = '/projects/:slug/'
+  articles = '/writing/:slug/'
+  lectures = '/reading/:slug/'

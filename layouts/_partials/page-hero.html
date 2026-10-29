@@ -1,0 +1,10 @@
+{{- /* Terminal-style page header. ctx: the page */ -}}
+{{ $cmd := .Params.cmd | default (printf "cat %s" (path.Base .RelPermalink | default "index")) }}
+<header class="pagehead">
+  <p class="pagehead__prompt" aria-hidden="true">
+    <span class="faint">┌──[</span><span class="green">brice</span><span class="faint">@portfolio]─[</span><span class="green">~{{ strings.TrimSuffix "/" .RelPermalink }}</span><span class="faint">]</span><br>
+    <span class="faint">└──╼ $</span> <span class="green">{{ $cmd }}</span>
+  </p>
+  <h1 class="pagehead__title">{{ .Title }}</h1>
+  {{ with .Params.lead }}<p class="pagehead__lead">{{ . }}</p>{{ end }}
+</header>

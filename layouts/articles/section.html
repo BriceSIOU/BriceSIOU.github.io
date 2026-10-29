@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  {{ partial "page-hero.html" . }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ $posts := .Pages.ByDate.Reverse }}
+  {{ if $posts }}
+  <ul class="articles">
+    {{ range $posts }}
+    <li class="articles__item reveal">
+      <time class="articles__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      <h3 class="articles__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p class="articles__desc">{{ .Params.summary | default .Summary }}</p>
+      <p class="articles__meta">
+        <span>{{ .ReadingTime }} {{ i18n "reading_time" }}</span>
+        {{ with .Params.tags }}<span class="faint">·</span> {{ delimit . ", " }}{{ end }}
+      </p>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <div class="empty reveal">
+    <p class="empty__cmd" aria-hidden="true"><span class="faint">$</span> <span class="green">ls ./articles</span></p>
+    <p>{{ i18n "no_posts" }}</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

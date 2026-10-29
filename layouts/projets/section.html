@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="wrap">
+  {{ partial "page-hero.html" . }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  <div class="grid grid--wide">
+    {{ range sort .Pages "Params.weight" }}
+      {{ partial "project-card.html" . }}
+    {{ else }}
+      <p class="empty">{{ i18n "no_projects" }}</p>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

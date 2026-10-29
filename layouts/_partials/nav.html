@@ -1,0 +1,25 @@
+<header class="nav" id="nav">
+  <a href="{{ .Site.Home.RelPermalink }}" class="nav__logo" aria-label="{{ i18n "home" }}">
+    <span class="green">~</span>/brice
+  </a>
+
+  <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="{{ i18n "menu" }}">
+    <span class="nav__bar"></span>
+    <span class="nav__bar"></span>
+    <span class="nav__bar"></span>
+  </button>
+
+  <nav class="nav__menu" id="nav-menu" aria-label="{{ i18n "menu" }}">
+    <ul class="nav__links">
+      {{ $current := . }}
+      {{ range .Site.Menus.main }}
+        {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+        <li>
+          <a href="{{ .URL }}" class="nav__link{{ if $active }} is-active{{ end }}"
+             {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+    {{ partial "lang-switch.html" . }}
+  </nav>
+</header>

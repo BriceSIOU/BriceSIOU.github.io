@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="wrap wrap--narrow">
+  {{ partial "page-hero.html" . }}
+
+  <dl class="meta reveal">
+    {{ with .Params.ptype }}<div class="meta__row"><dt>{{ i18n "role" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+    {{ with .Params.year }}<div class="meta__row"><dt>{{ i18n "year" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+    {{ with .Params.tech }}
+    <div class="meta__row"><dt>{{ i18n "stack" }}</dt><dd><ul class="chips">{{ range . }}<li class="chip">{{ . }}</li>{{ end }}</ul></dd></div>
+    {{ end }}
+    {{ with .Params.repo }}
+    <div class="meta__row"><dt>{{ i18n "view_code" }}</dt><dd><a href="{{ . }}" class="extlink" rel="noopener" target="_blank">{{ partial "icon.html" "github" }} {{ replace . "https://github.com/" "" }} {{ partial "icon.html" "external" }}</a></dd></div>
+    {{ end }}
+  </dl>
+
+  <article class="prose">{{ .Content }}</article>
+  {{ partial "page-foot.html" . }}
+</div>
+{{ end }}
