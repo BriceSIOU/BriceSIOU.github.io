@@ -5,6 +5,40 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ── Theme toggle ──────────────────────────────────────────── */
+  /* The stored theme is applied inline in <head> before paint; this only
+     handles switching it afterwards. Dark is the default when nothing
+     is stored, regardless of the OS preference. */
+  var themeBtn = document.getElementById('theme-toggle');
+
+  if (themeBtn) {
+    var root = document.documentElement;
+
+    var currentTheme = function () {
+      return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    };
+
+    var applyTheme = function (theme) {
+      root.setAttribute('data-theme', theme);
+      themeBtn.setAttribute('aria-pressed', String(theme === 'light'));
+      // Keep the browser chrome in step with the page
+      var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'theme-color');
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#000000');
+      try { localStorage.setItem('theme', theme); } catch (err) { /* private mode */ }
+    };
+
+    applyTheme(currentTheme());
+
+    themeBtn.addEventListener('click', function () {
+      applyTheme(currentTheme() === 'light' ? 'dark' : 'light');
+    });
+  }
+
   /* ── Mobile navigation ─────────────────────────────────────── */
   var toggle = document.getElementById('nav-toggle');
   var menu = document.getElementById('nav-menu');

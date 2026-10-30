@@ -118,26 +118,44 @@ edit the About page and both update.
 
 ## Changing the look
 
-Everything visual is in `static/css/main.css`, starting with the tokens at the
-top:
+Everything visual is in `static/css/main.css`. The site ships **two themes**;
+dark is the default and the header toggle switches to light, storing the
+choice in `localStorage` (applied inline in `<head>` so it never flashes).
+
+Both palettes are defined as tokens at the top of the file:
 
 ```css
---green:  #39ff14;   /* accent */
---bg:     #140203;   /* page background */
---text:   #d4d4d4;   /* body copy   — 12.5:1 contrast */
---dim:    #8a8a8a;   /* secondary   —  5.4:1, safe for body text */
---faint:  #6a6a6a;   /* decorative only — do not use for sentences */
+:root {                      /* dark — the default */
+  --green:  #39ff14;         /* 15.5:1 on black */
+  --bg:     #000000;
+  --text:   #e4e4e4;         /* 16.5:1 */
+  --dim:    #8a8a8a;         /*  6.1:1 */
+  --faint:  #7d7d7d;         /*  5.1:1 */
+}
+:root[data-theme="light"] {  /* light */
+  --green:  #0a7d05;         /* 5.3:1 — #39ff14 is invisible on white */
+  --bg:     #ffffff;
+  --text:   #1c1c1c;         /* 17.0:1 */
+  --dim:    #4d4d4d;         /*  8.5:1 */
+  --faint:  #6e6e6e;         /*  5.1:1 */
+}
 ```
 
-The stylesheet honours `prefers-reduced-motion` (grain off, no typing
-animation, no reveals) and has a print stylesheet.
+Every colour in the stylesheet is a token, so changing a theme means editing
+those two blocks and nothing else. All text/background pairs clear WCAG AA
+(4.5:1) — if you change a colour, keep that true.
 
-To turn the film grain off site-wide, set `grain = false` under `[params]` in
-`hugo.toml`.
+Fonts: **JetBrains Mono** for everything, **Syne** for the big display
+headings. Both load from Google Fonts in `layouts/_partials/head.html`. To
+make the headings monospaced too, set `--display` to the same stack as
+`--mono`.
+
+The stylesheet honours `prefers-reduced-motion` (grain off, no typing
+animation, no reveals) and has a print stylesheet. The film grain is a
+dark-theme effect and is hidden automatically in light mode; to disable it
+everywhere, set `grain = false` under `[params]` in `hugo.toml`.
 
 The phrases the hero types come from `typed:` in `content/{fr,en}/_index.md`.
-
----
 
 ## Deployment
 

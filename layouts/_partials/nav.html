@@ -21,5 +21,9 @@
       {{ end }}
     </ul>
     {{ partial "lang-switch.html" . }}
+    <button class="themebtn" id="theme-toggle" type="button"
+            aria-label="{{ i18n "theme_toggle" }}" title="{{ i18n "theme_toggle" }}">
+      {{ partial "icon.html" "moon" }}{{ partial "icon.html" "sun" }}
+    </button>
   </nav>
 </header>

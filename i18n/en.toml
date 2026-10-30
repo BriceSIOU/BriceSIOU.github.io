@@ -2,6 +2,7 @@
 skip_to_content = "Skip to content"
 menu            = "Menu"
 close           = "Close"
+theme_toggle    = "Switch between light and dark theme"
 switch_language = "Switch to French"
 back_to         = "Back to"
 home            = "Home"

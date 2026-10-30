@@ -4,23 +4,33 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Tokens ───────────────────────────────────────────────────── */
+/* Dark is the default. Light is opt-in via the header toggle, which
+   sets data-theme="light" on <html> and persists it in localStorage.
+   Contrast ratios noted below are against that theme's background. */
 :root {
-  --green:      #39ff14;
+  color-scheme: dark;
+
+  --green:      #39ff14;   /* 15.5:1 on black */
   --green-dim:  #1f8a10;
   --green-glow: rgba(57, 255, 20, 0.14);
+  --green-soft: rgba(57, 255, 20, 0.07);
+  --green-hard: rgba(57, 255, 20, 0.20);
+  --green-ring: rgba(57, 255, 20, 0.50);
   --red:        #ff5f56;
 
-  --bg:         #140203;
-  --bg-raise:   #1b0d0e;
-  --bg-sink:    #0d0102;
-  --border:     #2a1f20;
-  --border-lit: #3d2c2d;
+  --bg:         #000000;
+  --bg-blur:    rgba(0, 0, 0, 0.88);
+  --bg-raise:   #0d0d0d;
+  --bg-sink:    #070707;
+  --border:     #222222;
+  --border-lit: #343434;
 
-  --text:       #d4d4d4;   /* 12.5:1 on --bg */
-  --dim:        #8a8a8a;   /*  5.4:1 on --bg — safe for body copy */
-  --faint:      #6a6a6a;   /*  3.1:1 — decorative / large text only */
+  --heading:    #ffffff;
+  --text:       #e4e4e4;   /* 16.5:1 */
+  --dim:        #8a8a8a;   /*  6.1:1 — safe for body copy */
+  --faint:      #7d7d7d;   /*  5.1:1 — used for small meta text, so AA */
 
-  --mono:    'Share Tech Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --display: 'Syne', ui-sans-serif, system-ui, sans-serif;
 
   --wrap:        1100px;
@@ -29,6 +39,31 @@
   --nav-h:       66px;
 
   --step: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* #39ff14 is unreadable on white (~1.3:1), so the accent darkens. */
+  --green:      #0a7d05;   /* 5.3:1 on white */
+  --green-dim:  #7cc077;
+  --green-glow: rgba(10, 125, 5, 0.09);
+  --green-soft: rgba(10, 125, 5, 0.07);
+  --green-hard: rgba(10, 125, 5, 0.16);
+  --green-ring: rgba(10, 125, 5, 0.35);
+  --red:        #b3261e;
+
+  --bg:         #ffffff;
+  --bg-blur:    rgba(255, 255, 255, 0.9);
+  --bg-raise:   #f7f7f7;
+  --bg-sink:    #f1f1f1;
+  --border:     #e2e2e2;
+  --border-lit: #c6c6c6;
+
+  --heading:    #0a0a0a;
+  --text:       #1c1c1c;   /* 17.0:1 */
+  --dim:        #4d4d4d;   /*  8.5:1 */
+  --faint:      #6e6e6e;   /*  5.1:1 */
 }
 
 /* ── Reset ────────────────────────────────────────────────────── */
@@ -66,7 +101,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   z-index: 1000;
   padding: 0.75rem 1.25rem;
   background: var(--green);
-  color: #000;
+  color: var(--bg);
   font-weight: 700;
 }
 .skip-link:focus { left: 0; }
@@ -92,6 +127,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .wrap--narrow { max-width: var(--wrap-narrow); }
 
 /* ── Film grain ───────────────────────────────────────────────── */
+:root[data-theme="light"] #grain { display: none; }
+
 #grain {
   position: fixed;
   inset: 0;
@@ -115,7 +152,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   min-height: var(--nav-h);
   padding: 0.75rem var(--gutter);
   border-bottom: 1px solid var(--border);
-  background: rgba(20, 2, 3, 0.9);
+  background: var(--bg-blur);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -166,6 +203,24 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   transition: color 0.2s var(--step), border-color 0.2s var(--step);
 }
 .lang__link:hover { color: var(--green); border-color: var(--green-dim); }
+
+/* ── Theme toggle ─────────────────────────────────────────────── */
+.themebtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 26px;
+  color: var(--dim);
+  border: 1px solid var(--border-lit);
+  transition: color 0.2s var(--step), border-color 0.2s var(--step);
+}
+.themebtn:hover { color: var(--green); border-color: var(--green-dim); }
+/* Each icon shows only in the theme it switches away from. */
+.themebtn .icon-sun  { display: none; }
+.themebtn .icon-moon { display: block; }
+:root[data-theme="light"] .themebtn .icon-sun  { display: block; }
+:root[data-theme="light"] .themebtn .icon-moon { display: none; }
 
 /* Mobile toggle */
 .nav__toggle { display: none; flex-direction: column; gap: 5px; padding: 0.5rem; }
@@ -222,9 +277,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   animation: pulse 2.4s ease-out infinite;
 }
 @keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(57,255,20,0.5); }
-  70%  { box-shadow: 0 0 0 8px rgba(57,255,20,0); }
-  100% { box-shadow: 0 0 0 0 rgba(57,255,20,0); }
+  0%   { box-shadow: 0 0 0 0 var(--green-ring); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 .hero__name {
@@ -233,7 +288,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.025em;
-  color: #fff;
+  color: var(--heading);
   margin-bottom: 0.75rem;
 }
 
@@ -280,7 +335,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   color: var(--green);
   background: var(--green-glow);
 }
-.btn--primary:hover { background: rgba(57,255,20,0.2); }
+.btn--primary:hover { background: var(--green-hard); }
 .btn--lg { padding: 0.85rem 1.5rem; font-size: 0.95rem; }
 
 .tag {
@@ -329,7 +384,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-family: var(--display);
   font-size: clamp(1.15rem, 3vw, 1.5rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   letter-spacing: 0.03em;
 }
 .section__line { flex: 1; height: 1px; background: var(--border); min-width: 1rem; }
@@ -388,7 +443,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-size: 1.12rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #fff;
+  color: var(--heading);
   margin-bottom: 0.3rem;
 }
 /* Whole card clickable, link still the accessible target */
@@ -454,7 +509,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--heading);
 }
 .pagehead__lead {
   margin-top: 0.9rem;
@@ -500,7 +555,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-family: var(--display);
   font-size: 1.05rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   line-height: 1.4;
 }
 .timeline__project { font-size: 0.85rem; color: var(--faint); margin-top: 0.15rem; }
@@ -525,7 +580,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-family: var(--display);
   font-size: 0.95rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   letter-spacing: 0.02em;
 }
 
@@ -588,7 +643,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.35;
-  color: #fff;
+  color: var(--heading);
   margin: 0.4rem 0 0.6rem;
 }
 .articles__title a { transition: color 0.2s var(--step); }
@@ -714,7 +769,7 @@ a.contact__val:hover { color: var(--green); }
   font-family: var(--display);
   font-size: 1.35rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   letter-spacing: 0.01em;
   margin-top: 2.75rem;
   padding-top: 0.5rem;
@@ -725,12 +780,12 @@ a.contact__val:hover { color: var(--green); }
   font-family: var(--display);
   font-size: 1.08rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   margin-top: 2rem;
 }
 .prose p  { color: var(--dim); line-height: 1.85; }
 /* Emphasis must not be underlined — it reads as a link. */
-.prose strong { color: #fff; font-weight: 400; background: rgba(57,255,20,0.07); padding: 0 0.15em; }
+.prose strong { color: var(--heading); font-weight: 400; background: var(--green-soft); padding: 0 0.15em; }
 .prose em { color: var(--text); font-style: italic; }
 .prose a {
   color: var(--green);
@@ -826,6 +881,13 @@ a.contact__val:hover { color: var(--green); }
 }
 /* If JS never runs, content must still be visible */
 .no-js .reveal { opacity: 1; transform: none; }
+
+/* ── Light-theme adjustments ──────────────────────────────────── */
+:root[data-theme="light"] .hero__status { background: var(--green-glow); }
+:root[data-theme="light"] .card:hover { box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06); }
+:root[data-theme="light"] .prose code,
+:root[data-theme="light"] .prose pre { color: var(--text); }
+:root[data-theme="light"] .prose code { color: #0a5c04; }
 
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 860px) {

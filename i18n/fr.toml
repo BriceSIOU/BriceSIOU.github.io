@@ -2,6 +2,7 @@
 skip_to_content = "Aller au contenu"
 menu            = "Menu"
 close           = "Fermer"
+theme_toggle    = "Basculer entre thème clair et sombre"
 switch_language = "Passer en anglais"
 back_to         = "Retour à"
 home            = "Accueil"
