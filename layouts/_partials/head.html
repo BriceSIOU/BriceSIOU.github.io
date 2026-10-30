@@ -43,7 +43,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap">
 
 {{/* ── Styles ── */}}
-<link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+{{/* Fingerprinted: the filename changes whenever the CSS does, so a
+     returning visitor can never be served a stale stylesheet. */}}
+{{ with resources.Get "css/main.css" }}
+  {{ $css := . | minify | fingerprint "sha256" }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
 
 {{/* ── Icons & feeds ── */}}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
